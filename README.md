@@ -34,3 +34,4 @@ Add the following to your TypoScript setup:
                 20 = EXT:my_ext/Resources/Private/Layouts
             }
         }
+    }
