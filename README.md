@@ -14,7 +14,7 @@ It uses a background image rather than an img tag, so background-size and backgr
 
 The default height is 600px. Override this by adding the following CSS:
 
-    koning-bootstrap-carousel .item {
+    .koning-bootstrap-carousel .item {
         height: 1000px;
     }
 
