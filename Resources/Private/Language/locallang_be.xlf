@@ -62,7 +62,7 @@
                 <source>Center center</source>
             </trans-unit>
             <trans-unit id="tx_koningbootstrapcarousel_domain_model_slide.visual_position.center-bottom">
-                <source>Left top</source>
+                <source>Center bottom</source>
             </trans-unit>
 
             <trans-unit id="configuration.show.interval">

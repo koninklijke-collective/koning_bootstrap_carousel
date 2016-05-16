@@ -12,7 +12,7 @@
         <f:if condition="{settings.data.indicators}">
             <ol class="carousel-indicators">
                 <f:for each="{slides}" as="slide" iteration="i">
-                    <li data-target="#{identifier}" data-slide-to="{i.cycle}" class="{f:if(condition: '{i.isFirst}', then: 'active')}"></li>
+                    <li data-target="#{identifier}" data-slide-to="{i.index}" class="{f:if(condition: '{i.isFirst}', then: 'active')}"></li>
                 </f:for>
             </ol>
         </f:if>
