@@ -42,14 +42,23 @@ class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
-    protected $sliderText;
+    protected $description;
 
     /**
      * @return string
      */
-    public function getSliderText()
+    public function getDescription()
     {
-        return $this->sliderText;
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**
@@ -75,15 +84,6 @@ class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getLinkText()
     {
         return $this->linkText;
-    }
-
-    /**
-     * @param string $sliderText
-     * @return void
-     */
-    public function setSliderText($sliderText)
-    {
-        $this->sliderText = $sliderText;
     }
 
     /**
