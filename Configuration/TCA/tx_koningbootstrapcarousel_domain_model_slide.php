@@ -16,7 +16,7 @@ return array(
         'hideTable' => true,
         'sortby' => 'sorting',
         'delete' => 'deleted',
-        'searchFields' => 'uid, title',
+        'searchFields' => 'uid, title, description',
         'enablecolumns' => array(
             'disabled' => 'hidden',
             'starttime' => 'starttime',
@@ -25,11 +25,11 @@ return array(
         'iconfile' => 'EXT:koning_bootstrap_carousel/Resources/Public/Icons/tx_koningbootstrapcarousel_domain_model_slide.gif',
     ),
     'interface' => array(
-        'showRecordFieldList' => 'hidden, title, link, link_text, visual, visual_size, visual_position'
+        'showRecordFieldList' => 'hidden, title, link, link_text, description, visual, visual_size, visual_position'
     ),
     'types' => array(
         0 => array(
-            'showitem' => 'title;;access, link, link_text, visual, visual_size, visual_position'
+            'showitem' => 'title;;access, link, link_text, description, visual, visual_size, visual_position'
         )
     ),
     'palettes' => array(
@@ -105,6 +105,32 @@ return array(
                 'type' => 'input',
                 'size' => 30,
             )
+        ),
+        'description' => array(
+            'exclude' => true,
+            'l10n_mode' => 'mergeIfNotBlank',
+            'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.description',
+            'config' => array(
+                'type' => 'text',
+                'eval' => 'trim',
+                'cols' => 30,
+                'rows' => 5,
+                'softref' => 'rtehtmlarea_images,typolink_tag,images,email[subst],url',
+                'wizards' => [
+                    '_PADDING' => 2,
+                    'RTE' => [
+                        'notNewRecords' => 1,
+                        'RTEonly' => 1,
+                        'type' => 'script',
+                        'title' => 'Full screen Rich Text Editing',
+                        'icon' => 'actions-wizard-rte',
+                        'module' => [
+                            'name' => 'wizard_rte',
+                        ],
+                    ],
+                ],
+            ),
+            'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
         ),
         'visual' => array(
             'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual',

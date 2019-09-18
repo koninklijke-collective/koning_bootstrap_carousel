@@ -22,6 +22,9 @@
             <trans-unit id="tx_koningbootstrapcarousel_domain_model_slide.link_text">
                 <source>Link text</source>
             </trans-unit>
+            <trans-unit id="tx_koningbootstrapcarousel_domain_model_slide.description">
+                <source>Description text</source>
+            </trans-unit>
             <trans-unit id="tx_koningbootstrapcarousel_domain_model_slide.visual">
                 <source>Visual</source>
             </trans-unit>

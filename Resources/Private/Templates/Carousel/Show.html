@@ -24,6 +24,9 @@
                         <h3>
                             <f:format.nl2br>{slide.title}</f:format.nl2br>
                         </h3>
+                        <f:if condition="{slide.description}">
+                            {slide.description -> f:format.html()}
+                        </f:if>
                         <f:if condition="{slide.link}">
                             <f:link.typolink parameter="{slide.link}" class="btn btn-default">
                                 {slide.linkText}

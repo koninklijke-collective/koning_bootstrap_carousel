@@ -40,6 +40,28 @@ class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $visualPosition;
 
     /**
+     * @var string
+     */
+    protected $description;
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
      * @return string
      */
     public function getTitle()
