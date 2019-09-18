@@ -1,10 +1,9 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-    die ('Access denied.');
-}
 
-return array(
-    'ctrl' => array(
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+return [
+    'ctrl' => [
         'title' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide',
         'label' => 'title',
         'hideAtCopy' => true,
@@ -17,161 +16,190 @@ return array(
         'sortby' => 'sorting',
         'delete' => 'deleted',
         'searchFields' => 'uid, title, description',
-        'enablecolumns' => array(
+        'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',
             'endtime' => 'endtime',
-        ),
-        'iconfile' => 'EXT:koning_bootstrap_carousel/Resources/Public/Icons/tx_koningbootstrapcarousel_domain_model_slide.gif',
-    ),
-    'interface' => array(
-        'showRecordFieldList' => 'hidden, title, link, link_text, description, visual, visual_size, visual_position'
-    ),
-    'types' => array(
-        0 => array(
-            'showitem' => 'title;;access, link, link_text, description, visual, visual_size, visual_position'
-        )
-    ),
-    'palettes' => array(
-        'access' => array(
+        ],
+        'typeicon_classes' => [
+            'default' => 'tcarecords-koning_bootstrap_carousel-slide-default',
+        ],
+    ],
+    'interface' => [
+        'showRecordFieldList' => 'hidden, title, link, link_text, description, visual, visual_size, visual_position',
+    ],
+    'types' => [
+        0 => [
+            'showitem' => 'title, --palette--;;access, --palette--;;link, description, --palette--;;visual,',
+        ],
+    ],
+    'palettes' => [
+        'access' => [
             'showitem' => 'hidden, starttime, endtime',
-            'canNotCollapse' => false
-        )
-    ),
-    'columns' => array(
-        'hidden' => array(
-            'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-            'config' => array(
+        ],
+        'link' => [
+            'showitem' => 'link, link_text',
+        ],
+        'visual' => [
+            'showitem' => 'visual, --linebreak--, visual_size, visual_position',
+        ],
+    ],
+    'columns' => [
+        'hidden' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.enabled',
+            'config' => [
                 'type' => 'check',
-                'default' => 0
-            )
-        ),
-        'starttime' => Array(
-            'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.starttime',
-            'config' => Array(
+                'renderType' => 'checkboxToggle',
+                'default' => 0,
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                        'invertStateDisplay' => true,
+                    ],
+                ],
+            ],
+        ],
+        'starttime' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
+            'config' => [
                 'type' => 'input',
-                'size' => '10',
-                'max' => '20',
-                'eval' => 'datetime',
-                'checkbox' => '0',
-                'default' => '0'
-            )
-        ),
-        'endtime' => Array(
-            'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.endtime',
-            'config' => Array(
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime,int',
+                'default' => 0,
+            ],
+        ],
+        'endtime' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
+            'config' => [
                 'type' => 'input',
-                'size' => '8',
-                'max' => '20',
-                'eval' => 'datetime',
-                'checkbox' => '0',
-                'default' => '0',
-                'range' => Array(
-                    'upper' => mktime(0, 0, 0, 12, 31, 2020),
-                    'lower' => mktime(0, 0, 0, date('m') - 1, date('d'), date('Y'))
-                )
-            )
-        ),
-        'title' => array(
-            'exclude' => 0,
-            'l10n_mode' => 'mergeIfNotBlank',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime,int',
+                'default' => 0,
+                'range' => [
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
+                ],
+            ],
+        ],
+        'title' => [
+            'exclude' => false,
             'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.title',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'eval' => 'trim, required',
                 'size' => 30,
-            )
-        ),
-        'link' => array(
-            'exclude' => 0,
-            'l10n_mode' => 'mergeIfNotBlank',
+            ],
+        ],
+        'link' => [
+            'exclude' => false,
             'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.link',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
-                'size' => 30,
-                'eval' => 'trim',
-            ),
-        ),
-        'link_text' => array(
-            'exclude' => 0,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.link_text',
-            'config' => array(
-                'type' => 'input',
-                'size' => 30,
-            )
-        ),
-        'description' => array(
-            'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.description',
-            'config' => array(
-                'type' => 'text',
-                'eval' => 'trim',
-                'cols' => 30,
-                'rows' => 5,
-                'softref' => 'rtehtmlarea_images,typolink_tag,images,email[subst],url',
-                'wizards' => [
-                    '_PADDING' => 2,
-                    'RTE' => [
-                        'notNewRecords' => 1,
-                        'RTEonly' => 1,
-                        'type' => 'script',
-                        'title' => 'Full screen Rich Text Editing',
-                        'icon' => 'actions-wizard-rte',
-                        'module' => [
-                            'name' => 'wizard_rte',
+                'renderType' => 'inputLink',
+                'size' => 20,
+                'max' => 1024,
+                'fieldControl' => [
+                    'linkPopup' => [
+                        'options' => [
+                            'title' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.link',
                         ],
                     ],
                 ],
-            ),
-            'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-        ),
-        'visual' => array(
+                'softref' => 'typolink',
+            ],
+        ],
+        'link_text' => [
+            'exclude' => false,
+            'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.link_text',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+            ],
+        ],
+        'description' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.description',
+            'config' => [
+                'type' => 'text',
+                'enableRichtext' => true,
+            ],
+        ],
+        'visual' => [
             'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+            'config' => ExtensionManagementUtility::getFileFieldTCAConfig(
                 'visual',
-                array(
-                    'appearance' => array(
-                        'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:media.addFileReference'
-                    ),
+                [
+                    'appearance' => [
+                        'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:media.addFileReference',
+                    ],
                     'minitems' => 1,
                     'maxitems' => 1,
-                ),
+                ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
-        ),
-        'visual_size' => array(
+        ],
+        'visual_size' => [
             'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_size',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
-                'items' => array(
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_size.cover', 'cover'),
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_size.contain', 'contain')
-                ),
-            ),
-        ),
-        'visual_position' => array(
+                'items' => [
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_size.cover',
+                        'cover',
+                    ],
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_size.contain',
+                        'contain',
+                    ],
+                ],
+            ],
+        ],
+        'visual_position' => [
             'label' => 'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
-                'items' => array(
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.left-top', 'left-top'),
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.left-center', 'left-center'),
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.left-bottom', 'left-bottom'),
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.right-top', 'right-top'),
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.right-center', 'right-center'),
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.right-bottom', 'right-bottom'),
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.center-top', 'center-top'),
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.center-center', 'center-center'),
-                    array('LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.center-bottom', 'center-bottom'),
-                ),
-            ),
-        ),
-    ),
-);
+                'items' => [
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.left-top',
+                        'left-top',
+                    ],
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.left-center',
+                        'left-center',
+                    ],
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.left-bottom',
+                        'left-bottom',
+                    ],
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.right-top',
+                        'right-top',
+                    ],
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.right-center',
+                        'right-center',
+                    ],
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.right-bottom',
+                        'right-bottom',
+                    ],
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.center-top',
+                        'center-top',
+                    ],
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.center-center',
+                        'center-center',
+                    ],
+                    [
+                        'LLL:EXT:koning_bootstrap_carousel/Resources/Private/Language/locallang_be.xlf:tx_koningbootstrapcarousel_domain_model_slide.visual_position.center-bottom',
+                        'center-bottom',
+                    ],
+                ],
+            ],
+        ],
+    ],
+];

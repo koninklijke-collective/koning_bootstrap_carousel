@@ -1,13 +1,18 @@
 <?php
+
 namespace Keizer\KoningBootstrapCarousel\Domain\Model;
+
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 
 /**
  * Slide model
- *
- * @package Keizer\KoningBootstrapCarousel\Domain\Model
  */
-class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Slide extends AbstractEntity
 {
+    public const TABLE = 'tx_koningbootstrapcarousel_domain_model_slide';
+
     /**
      * @var string
      */
@@ -24,8 +29,13 @@ class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $link;
 
     /**
+     * @var string
+     */
+    protected $description;
+
+    /**
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $visual;
 
@@ -40,126 +50,139 @@ class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $visualPosition;
 
     /**
-     * @var string
-     */
-    protected $description;
-
-    /**
      * @return string
      */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     * @return void
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
-     * @param string $title
-     * @return void
+     * @param  string  $title
+     * @return $this
      */
-    public function setTitle($title)
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getLinkText()
+    public function getLinkText(): ?string
     {
         return $this->linkText;
     }
 
     /**
-     * @param string $linkText
-     * @return void
+     * @param  string  $linkText
+     * @return $this
      */
-    public function setLinkText($linkText)
+    public function setLinkText(string $linkText): self
     {
         $this->linkText = $linkText;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getLink()
+    public function getLink(): ?string
     {
         return $this->link;
     }
 
     /**
-     * @param string $link
-     * @return void
+     * @param  string  $link
+     * @return $this
      */
-    public function setLink($link)
+    public function setLink(string $link): self
     {
         $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param  string  $description
+     * @return $this
+     */
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     /**
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
-    public function getVisual()
+    public function getVisual(): FileReference
     {
+        if ($this->visual instanceof LazyLoadingProxy) {
+            $this->visual->_loadRealInstance();
+        }
+
         return $this->visual;
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $visual
-     * @return void
+     * @param  \TYPO3\CMS\Extbase\Domain\Model\FileReference  $visual
+     * @return $this
      */
-    public function setVisual(\TYPO3\CMS\Extbase\Domain\Model\FileReference $visual)
+    public function setVisual(FileReference $visual): self
     {
         $this->visual = $visual;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getVisualSize()
+    public function getVisualSize(): ?string
     {
         return $this->visualSize;
     }
 
     /**
-     * @param string $visualSize
-     * @return void
+     * @param  string  $visualSize
+     * @return $this
      */
-    public function setVisualSize($visualSize)
+    public function setVisualSize(string $visualSize): self
     {
         $this->visualSize = $visualSize;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getVisualPosition()
+    public function getVisualPosition(): ?string
     {
         return $this->visualPosition;
     }
 
     /**
-     * @param string $visualPosition
-     * @return void
+     * @param  string  $visualPosition
+     * @return $this
      */
-    public function setVisualPosition($visualPosition)
+    public function setVisualPosition(string $visualPosition): self
     {
         $this->visualPosition = $visualPosition;
+
+        return $this;
     }
 }

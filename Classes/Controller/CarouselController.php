@@ -1,16 +1,17 @@
 <?php
+
 namespace Keizer\KoningBootstrapCarousel\Controller;
+
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
  * Controller: Carousel
- *
- * @package Keizer\KoningBootstrapCarousel\Controller
  */
-class CarouselController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class CarouselController extends ActionController
 {
     /**
      * @var \Keizer\KoningBootstrapCarousel\Domain\Repository\SlideRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $slideRepository;
 
@@ -19,12 +20,12 @@ class CarouselController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      * @return void
      */
-    public function showAction()
+    public function showAction(): void
     {
-        $currentId = (int) $this->configurationManager->getContentObject()->getFieldVal('uid');
-        $this->view->assignMultiple(array(
+        $currentId = (int)$this->configurationManager->getContentObject()->getFieldVal('uid');
+        $this->view->assignMultiple([
             'identifier' => 'koning-bootstrap-carousel-id-' . $currentId,
-            'slides' => $this->slideRepository->findByContentId($currentId),
-        ));
+            'slides' => $this->slideRepository->findAttachedToContent($currentId),
+        ]);
     }
 }

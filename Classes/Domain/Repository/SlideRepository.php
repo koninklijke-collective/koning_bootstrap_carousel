@@ -1,28 +1,27 @@
 <?php
+
 namespace Keizer\KoningBootstrapCarousel\Domain\Repository;
+
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * Repository: Carousel Slides
- *
- * @package Keizer\KoningBootstrapCarousel\Domain\Repository
  */
-class SlideRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class SlideRepository extends Repository
 {
-    /**
-     * @var array
-     */
-    protected $defaultOrderings = array(
-        'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-    );
 
     /**
-     * @return void
+     * @param  int  $uid
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
-    public function initializeObject()
+    public function findAttachedToContent(int $uid)
     {
-        $querySettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
-        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings $querySettings */
-        $querySettings->setRespectStoragePage(false);
-        $this->setDefaultQuerySettings($querySettings);
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->matching($query->equals('contentId', $uid));
+        $query->setOrderings(['sorting' => QueryInterface::ORDER_ASCENDING]);
+
+        return $query->execute();
     }
 }

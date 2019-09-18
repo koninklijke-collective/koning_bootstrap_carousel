@@ -1,0 +1,18 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <g class="background">
+        <path fill="#FEFEFE" d="M1 1h1v22H1z"/>
+        <path fill="#F1F3F5" d="M2 2h20v20H2z"/>
+        <path fill="#C3CCD2" d="M2 22h21v1H2z"/>
+        <path fill="#767A7D" d="M0 0h1v24H0zM1 0h22v1H1z"/>
+        <path fill="#56595C" d="M23 0h1v24h-1zM1 23h22v1H1z"/>
+        <path fill="#C3CCD2" d="M22 1h1v21h-1z"/>
+        <path fill="#FEFEFE" d="M2 1h20v1H2z"/>
+    </g>
+    <g class="carousel">
+        <path fill="#56595C" d="M3 4h18v16H3z"/>
+        <path fill="#F1F3F5" d="M3 10h1v4H3zM20 10h1v4h-1z"/>
+        <path fill="#CBCDCF" d="M4 11h1v2H4zM19 11h1v2h-1z"/>
+        <path fill="#D73282" d="M15 5h1v1h-1z"/>
+        <path fill="#F1F3F5" d="M13 5h1v1h-1zM17 5h1v1h-1zM19 5h1v1h-1z"/>
+    </g>
+</svg>
